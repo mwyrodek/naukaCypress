@@ -15,6 +15,8 @@ class swagLabsPO {
     }
     addProduct(index) {
         cy.get('.inventory_item button').eq(index).click();
+
+        return this;
     }
     removeProduct(index) {
         cy.get('.cart_item button').eq(index).click();

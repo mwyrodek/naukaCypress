@@ -4,12 +4,16 @@
         "start": "npx cypress open",
         "start:swapi": "npx cypress open --env env=swapi",
         "start:demoqa": "npx cypress open --env env=demoQA",
-        "start:swaglab": "npx cypress open --env env=swaglab",
+        "start:swaglab": "npx cypress run --env env=swaglab",
         "report": "npx cypress run --spec \"cypress/e2e/demoQA/**\" --reporter junit"
     },
     "devDependencies": {
         "cypress": "^10.3.0",
         "cypress-multi-reporters": "^1.6.1",
         "mocha-junit-reporter": "^2.0.2"
+    },
+    "dependencies": {
+        "@testing-library/cypress": "^8.0.3",
+        "cypress-xpath": "^2.0.0"
     }
 }

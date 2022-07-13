@@ -20,7 +20,8 @@ describe('Testing a practice form', () => {
         cy.get('#firstName').type('Alex');
         cy.get('#lastName').type('Nowak');
         cy.get('#userEmail').type('name@example.com');
-        cy.get('[name = "gender"]').eq(0).click({ force: true });
+        //cy.get('[name = "gender"]').eq(0).click();
+        cy.get('label[for="gender-radio-1"]').click();
         cy.get('#userNumber').type('6666666666');
         cy.get('#dateOfBirthInput').click();
         cy.get('.react-datepicker__year-select').select('1998');
@@ -32,10 +33,10 @@ describe('Testing a practice form', () => {
         cy.get('#hobbies-checkbox-1').click({ force: true });
         cy.get('#hobbies-checkbox-2').click({ force: true });
         cy.get('#hobbies-checkbox-3').click({ force: true });
-        cy.get('#uploadPicture').attachFile('Sports.jpg');
+    //  cy.get('#uploadPicture').attachFile('Sports.jpg');
         cy.get('#currentAddress').type('Polska Poznań');
     })
-    it('should refill a form with PO', () => {
+    it.skip('should refill a form with PO', () => {
         page.setPersonalData(data.user.name, data.user.surname, data.user.email)
         page.setGender('random')
         page.setPhone(data.user.phone)
@@ -45,7 +46,7 @@ describe('Testing a practice form', () => {
         page.attachFile('Sports.jpg')
         page.typeCurrentAddress(data.user.address)
     })
-    it('should refill a form with PO Male and multiple subjects', () => {
+    it.skip('should refill a form with PO Male and multiple subjects', () => {
         page.setPersonalData(data.user.name, data.user.surname, data.user.email)
         page.setGender(data.user.gender)
         page.setPhone(data.user.phone)

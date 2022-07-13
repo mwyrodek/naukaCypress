@@ -2,7 +2,7 @@
 
 import swagLabsPO from "../../support/PageObjects/swaglabPO"
 
-const url = "https://www.saucedemo.com/"
+const url = Cypress.env('sauceUrl');
 const page= new swagLabsPO
     
 describe('testujemy aplikacjie SwagLabs', () => {
@@ -13,6 +13,7 @@ context('Login tests', () => {
         cy.visit(url);
     })
     it('correct login', () => {
+
         cy.get('[data-test="username"]').type('standard_user')
         cy.get('[data-test="password"]').type('secret_sauce')
         cy.get('[data-test="login-button"]').click()
@@ -99,11 +100,15 @@ context('Order tests', () => {
                 cy.get('.inventory_item button')
                     .then(($el) => { 
                   const itemCount = Cypress.$($el).length;
+                  cy.wrap(itemCount).as('@itemCout')
                         cy.log(itemCount);
                     })
-                for (var i = 0; i < 6; i++) {
-                    page.addProduct(i)
-                }
+                cy.get('@itemCount').then((itemCount)=>{
+                    for (var i = 0; i < itemCount; i++) {
+                        page.addProduct(i)
+                    }
+                })
+
                 cy.get('.shopping_cart_badge').should('contain', '6')
                 cy.get('.shopping_cart_link').click()
                 cy.get('[data-test="checkout"]').click()
